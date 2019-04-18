@@ -24,4 +24,13 @@ export class UsuarioEffects {
       catchError(error => of(new usuarioActions.CargarUsuariosFails(error))))
     )
   );
+
+  @Effect()
+  cargarUsuario$ = this.actions$.pipe(
+    ofType(usuarioActions.UsuariosActions.Cargar_Usuario),
+    switchMap((action: any) => this.usuarioService.getUserById(action['id']).pipe(
+      map((user) => new usuarioActions.CargarUsuarioSuccess(user)),
+      catchError(error => of(new usuarioActions.CargarUsuarioFails(error) ))
+    ))
+  );
 }

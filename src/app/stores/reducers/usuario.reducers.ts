@@ -15,6 +15,17 @@ export const InitialState: UsuariosState = {
   error: null
 };
 
+export const objectError = (state: any, action: any) => ({
+  ...state,
+  loading: false,
+  loaded: false,
+  error: {
+    status: action.payload.status,
+    message: action.payload.message,
+    url: action.payload.url
+  }
+});
+
 export function usuariosReducers(state = InitialState, action: UsuarioActions.UsuarioActionsUnion): UsuariosState {
   switch (action.type) {
     case UsuarioActions.UsuariosActions.Cargar_Usuarios: {
@@ -34,16 +45,7 @@ export function usuariosReducers(state = InitialState, action: UsuarioActions.Us
     }
 
     case UsuarioActions.UsuariosActions.Cargar_Usuarios_Fails: {
-      return {
-        ...state,
-        loading: false,
-        loaded: false,
-        error: {
-          status: action.payload.status,
-          message: action.payload.message,
-          url: action.payload.url
-        }
-      };
+      return objectError(state, action);
     }
 
     default:
