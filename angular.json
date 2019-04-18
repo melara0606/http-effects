@@ -4,7 +4,7 @@
   "newProjectRoot": "projects",
   "projects": {
     "http-effects": {
-      "root": "",
+      "root": "src/app",
       "sourceRoot": "src",
       "projectType": "application",
       "prefix": "app",
